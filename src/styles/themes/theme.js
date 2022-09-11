@@ -38,15 +38,15 @@ export const theme = {
     xxx_large: "1.8em",
   },
   colors: {
-    primary: "#d81f26",
-    secondary: "rgba(24,24,24,1)",
-    tertiary: "rgba(32,32,32,1)",
-    quaternary: "rgba(48,48,48,1)",
-    quinary: "#047fd1",
+    primary: "#023E73",
+    secondary: "#DCE8F2",
+    tertiary: "#0487D9",
+    quaternary: "#F2A81D",
+    quinary: "#F2F2F2",
 
-    font1: "rgb(255,255,255)",
-    font2: "rgb(236,236,236)",
-    font3: "rgb(208,208,208)",
+    font1: "rgb(11,24,29)",
+    font2: "rgb(23,33,43)",
+    font3: "rgb(33,43,52)",
 
     success: "#0ECB81",
     info: "#0795FF",
