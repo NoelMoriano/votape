@@ -1,46 +1,40 @@
 import React from "react";
+import { Button } from "../../components";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import Result from "antd/lib/result";
-import Button from "antd/lib/button";
 
 export const Page404 = () => {
   const navigate = useNavigate();
 
-  const navigateToInitialPage = () => navigate("/");
+  const goBack = () => navigate("/");
 
   return (
     <Container>
-      <Result
-        status="404"
-        title="404"
-        subTitle="Lo sentimos, la página que visistaste no existe."
-        extra={
-          <Button type="primary" onClick={() => navigateToInitialPage()}>
-            Ir a pagina de inicio
-          </Button>
-        }
-      />
+      <div className="wrapper-items">
+        <h1>404</h1>
+        <p>No se encontró la página</p>
+        <Button onClick={goBack} margin="1em 0">
+          Regresar a inicio
+        </Button>
+      </div>
     </Container>
   );
 };
 
-const Container = styled.section`
-  width: 100vw;
-  height: 100vh;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .ant-result-title,
-  .ant-result-subtitle {
-    color: #fff !important;
-  }
-
-  .ant-result-extra {
-    button {
-      background: red;
-      border-color: red;
+  .wrapper-items {
+    color: ${({ theme }) => theme.colors.font1};
+    text-align: center;
+    h1 {
+      font-size: 11em;
+    }
+    p {
+      font-size: 1.4em;
     }
   }
 `;

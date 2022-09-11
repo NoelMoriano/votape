@@ -1,3 +1,5 @@
-export * from "./home";
 export * from "./404";
-export * from "./contact-success";
+export * from "./login";
+export * from "./register";
+export * from "./profile";
+export * from "./home";

@@ -1,53 +1,59 @@
 import React from "react";
-import InputAntd from "antd/lib/input";
-import { ComponentContainer } from "./component-container";
-
-// interface Props {
-//   value?: string;
-//   required?: boolean;
-//   hidden?: boolean;
-//   error?: FormError;
-//   label?: string;
-//   variant?: "outlined" | "filled";
-//   disabled?: boolean;
-// }
+import styled, { css } from "styled-components";
+import { ComponentContainer } from "./ComponentContainer";
 
 export const Input = ({
+  label,
   value,
+  placeHolder,
+  error,
+  helperText,
+  disabled,
   required = false,
   hidden = false,
-  isMobile = false,
-  error,
-  label,
-  variant = "outlined",
-  disabled,
-  animation,
-  bgColor,
-  ...props
+  type = "text",
+  onChange,
 }) => {
-  const Container = ComponentContainer[variant];
-
   return (
-    <Container
-      value={value}
-      required={required}
-      hidden={hidden}
-      error={error}
+    <ComponentContainer
       label={label}
+      required={required}
+      helperText={helperText}
+      error={error}
       disabled={disabled}
-      animation={animation}
-      bgColor={bgColor}
+      hidden={hidden}
     >
-      <InputAntd
-        bordered={false}
-        autoComplete="chrome-off"
-        size={isMobile ? "middle" : "large"}
-        placeholder=""
-        value={value}
-        disabled={disabled}
-        allowClear={!disabled}
-        {...props}
-      />
-    </Container>
+      <Container disabled={disabled}>
+        <input
+          type={type}
+          className="item-input"
+          placeholder={placeHolder}
+          value={value}
+          onChange={onChange}
+          allowClear={!disabled}
+          disabled={disabled}
+        />
+      </Container>
+    </ComponentContainer>
   );
 };
+
+const Container = styled.div`
+  ${({ theme, disabled }) => css`
+    input {
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border: none;
+      padding: 1.1rem 1.3rem;
+      font-size: 1em;
+      font-weight: 600;
+      outline: none;
+      color: ${theme.colors.dark};
+      ${disabled &&
+      css`
+        pointer-events: none;
+      `}
+    }
+  `};
+`;

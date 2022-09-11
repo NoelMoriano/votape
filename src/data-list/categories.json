@@ -1,0 +1,18 @@
+[
+  {
+    "id": "anime",
+    "name": "Animes"
+  },
+  {
+    "id": "ova",
+    "name": "Ovas"
+  },
+  {
+    "id": "película",
+    "name": "Películas"
+  },
+  {
+    "id": "especial",
+    "name": "Especial"
+  }
+]

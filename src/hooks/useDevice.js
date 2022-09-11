@@ -1,12 +1,6 @@
 import { useMemo, useState } from "react";
 import { breakPoints } from "../styles/constants/breakPoints";
 
-// interface Return {
-//   currentScreenWidth: number;
-//   currentScreenHeight: number;
-//   isMobile: boolean;
-// }
-
 export const useDevice = () => {
   const [currentScreenWidth, setCurrentScreenWidth] = useState(
     window.innerWidth
@@ -26,9 +20,15 @@ export const useDevice = () => {
     resizeObserver.observe(document.body);
   }, []);
 
+  const isDeviceMobile =
+    !!navigator.userAgent.match("Android") ||
+    !!navigator.userAgent.match("iPhone") ||
+    !!navigator.userAgent.match("iPad");
+
   return {
     currentScreenHeight,
     currentScreenWidth,
-    isMobile: currentScreenWidth < breakPoints.desktop,
+    isMobile: currentScreenWidth < breakPoints.tablet,
+    isDevice: { mobile: isDeviceMobile },
   };
 };

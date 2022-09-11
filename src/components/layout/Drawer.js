@@ -1,69 +1,48 @@
 import React from "react";
-import DrawerAntd from "antd/lib/drawer";
 import styled from "styled-components";
-import { mediaQuery } from "../../styles/constants/mediaQuery";
+import { Button } from "../ui";
+import { useAuthentication } from "../../providers";
 import { useNavigate } from "react-router";
+import { UserMenu } from "./UserMenu";
 
-export const Drawer = ({
-  visibleDrawer,
-  onSetVisibleDrawer,
-  onClickVisibleFormContact,
-}) => {
+export const Drawer = () => {
   const navigate = useNavigate();
+
+  const { authUser, logout } = useAuthentication();
+
+  const onNavigateTo = (param) => navigate(param);
+
   return (
-    <ComponentDrawerAntd
-      title={null}
-      placement="right"
-      onClose={() => onSetVisibleDrawer(false)}
-      visible={visibleDrawer}
-    >
-      <MenuItem onClick={() => onSetVisibleDrawer(false)}>
-        <span onClick={() => navigate("/")}>Inicio</span>
-      </MenuItem>
-      <MenuItem onClick={() => onSetVisibleDrawer(false)}>
-        <a href="#about-us">Nosotros</a>
-      </MenuItem>
-      <MenuItem onClick={() => onSetVisibleDrawer(false)}>
-        <a href="#services">Servicios</a>
-      </MenuItem>
-      <MenuItem
-        onClick={() => {
-          onSetVisibleDrawer(false);
-          onClickVisibleFormContact();
-        }}
-      >
-        <span>Contácto</span>
-      </MenuItem>
-    </ComponentDrawerAntd>
+    <Container>
+      {authUser ? (
+        <UserMenu onLogout={logout} />
+      ) : (
+        <div className="wrapper-buttons">
+          <Button size="medium" onClick={() => onNavigateTo("/login")}>
+            Iniciar sesion
+          </Button>
+          <Button
+            size="medium"
+            type="tertiary"
+            onClick={() => onNavigateTo("/register")}
+          >
+            Registrarse
+          </Button>
+        </div>
+      )}
+    </Container>
   );
 };
 
-const ComponentDrawerAntd = styled(DrawerAntd)`
-  color: #000;
-
-  .ant-drawer-content-wrapper {
-    width: 100% !important;
-    ${mediaQuery.minTablet} {
-      width: 40% !important;
-    }
-  }
-  .ant-drawer-header {
-    .ant-drawer-close {
-      color: #000;
-    }
-  }
-  .ant-drawer-header,
-  .ant-drawer-content {
-    background: #fff;
-  }
-`;
-
-const MenuItem = styled.div`
-  margin-bottom: 1.5rem;
-  a,
-  span {
-    cursor: pointer;
-    color: #000;
-    font-size: 1.7rem;
+const Container = styled.div`
+  padding: 1rem 0;
+  position: sticky;
+  top: 10vh;
+  .wrapper-buttons {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;

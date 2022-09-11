@@ -29,7 +29,7 @@ export const theme = {
   font_sizes: {
     xxx_small: ".6em",
     xx_small: ".7em",
-    x_small: ".9em",
+    x_small: ".8em",
     small: "1em",
     medium: "1.1em",
     large: "1.3em",
@@ -38,16 +38,15 @@ export const theme = {
     xxx_large: "1.8em",
   },
   colors: {
-    primary: "#0F1920",
-    secondary: "rgb(255, 255, 255)",
-    tertiary: "rgb(255, 255, 255)",
-    quaternary: "rgb(43, 49, 57)",
-    quinary: "#474D57",
-    sextiary: "#D9A23D",
+    primary: "#d81f26",
+    secondary: "rgba(24,24,24,1)",
+    tertiary: "rgba(32,32,32,1)",
+    quaternary: "rgba(48,48,48,1)",
+    quinary: "#047fd1",
 
-    font1: "rgb(5, 12, 17)",
-    font2: "rgb(183, 189, 198)",
-    font3: "rgb(132, 142, 156)",
+    font1: "rgb(255,255,255)",
+    font2: "rgb(236,236,236)",
+    font3: "rgb(208,208,208)",
 
     success: "#0ECB81",
     info: "#0795FF",
@@ -55,7 +54,7 @@ export const theme = {
     error: "rgb(246, 70, 93)",
 
     black: "#090B0D",
-    white: "#EAECEF",
+    white: "#fff",
     dark: "#090B0D",
     light: "#d7d8d9",
 

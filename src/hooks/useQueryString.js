@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
 import qs from "query-string";
+import { useCallback, useState } from "react";
 
-const getQueryStringValue = (key, queryString = window.location.search) => {
+const getQueryStringValue = (key, queryString) => {
   const values = qs.parse(queryString);
   return values[key];
 };

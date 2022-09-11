@@ -1,5 +1,4 @@
 import { css, createGlobalStyle } from "styled-components";
-import { mediaQuery } from "../constants/mediaQuery";
 
 const global = css`
   * {
@@ -13,10 +12,11 @@ const global = css`
   }
 
   body {
-    overflow-x: hidden;
     font-size: 16px;
-    background: #fff;
-    font-family: "MontserratRegular", serif;
+    overflow-x: hidden;
+    font-family: "MontserratRegular", sans-serif;
+    background: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.font1};
   }
 
   h1,
@@ -25,53 +25,53 @@ const global = css`
   h4,
   h5,
   h6 {
-    font-family: "MontserratRegular", serif;
-    line-height: 2.3rem;
+    font-family: "MontserratRegular", sans-serif;
+    color: ${({ theme }) => theme.colors.font1};
   }
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 4em;
     font-weight: bold;
-  }
-
-  ${mediaQuery.minTablet} {
-    font-size: 2.5rem;
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 3em;
     font-weight: bold;
-
-    ${mediaQuery.minTablet} {
-      font-size: 2rem;
-    }
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 2em;
     font-weight: bold;
   }
 
   h4 {
-    font-size: 1.2rem;
+    font-size: 1.5em;
     font-weight: bold;
   }
 
   h5 {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     font-weight: bold;
   }
 
-  h5 {
-    font-size: 1rem;
+  h6 {
+    font-size: 1em;
     font-weight: bold;
   }
 
   h1,
   h2,
   h3 {
-    line-height: 2.7rem;
+    line-height: 1.2em;
+  }
+
+  .item-link {
+    color: ${({ theme }) => theme.colors.quinary};
+    cursor: pointer;
+    text-decoration: none;
   }
 `;
 
-export const GlobalStyles = createGlobalStyle(global);
+export const GlobalStyle = createGlobalStyle`
+  ${global}
+`;

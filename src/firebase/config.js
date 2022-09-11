@@ -1,21 +1,38 @@
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
 import configs from "./configs.json";
 import { includes } from "lodash";
 
 const hostName = window.location.hostname;
 
-const hostsProduction = ["factura.servitec.site"];
+const hostsProduction = ["votape.com"];
 
 const currentEnvironment = includes(hostsProduction, hostName)
   ? "production"
   : "development";
 
-console.log(currentEnvironment);
-
 const currentConfig = configs[currentEnvironment];
+
+firebase.initializeApp(currentConfig.firebaseApp);
+
+const firestore = firebase.firestore();
+const auth = firebase.auth();
 
 const common = configs.common;
 const contactData = configs.common.contactData;
 
-const { version, apiUrl, ipInfoApi } = currentConfig;
+const { version, animeServerApi } = currentConfig;
 
-export { version, apiUrl, ipInfoApi, currentConfig, common, contactData };
+console.log(currentEnvironment, ":", version);
+
+export {
+  currentConfig,
+  firebase,
+  version,
+  animeServerApi,
+  common,
+  contactData,
+  auth,
+  firestore,
+};
