@@ -8,7 +8,7 @@ import {
   TabEducation,
   TabProposal,
 } from "../../components";
-import { ImgAvatar, ImgBackground } from "../../images";
+import { ImgAvatar } from "../../images";
 
 export const CandidateDetail = () => {
   const [tabType, setTabType] = useState("proposal");
@@ -19,8 +19,8 @@ export const CandidateDetail = () => {
     <Container>
       <CandidateCover
         candidate="Panchita Pistolas"
-        imgCover={ImgBackground}
-        imgProfile={ImgAvatar}
+        // imgCover={ImgBackground}
+        // imgProfile={ImgAvatar}
       />
 
       <CandidateContent
