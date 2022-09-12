@@ -5,6 +5,7 @@ export { default as videoBanner } from "./others/videoAnime.mp4";
 export { default as Imalogo } from "./svgs/imalogo.svg";
 export { default as ImgCardOnePiece } from "./home/animes/aventura/image 13.png";
 export { default as AvatarDefault } from "./resources/user_default.png";
+export { default as PedroCastillo } from "./MEMES-5.jpeg";
 
 export { default as ImgHomeBanner } from "./webp/principal-banner.webp";
 export { default as ImgAvatar } from "./webp/avatar.webp";

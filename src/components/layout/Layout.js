@@ -20,7 +20,7 @@ export const Layout = ({ children }) => {
         <LayoutContent>
           <Header onSetVisibleDrawer={setvisibleDrawer} />
           <div className="body">{children}</div>
-          <Footer />
+          {/*<Footer />*/}
         </LayoutContent>
       </WrapperContainer>
     </LayoutContainer>
