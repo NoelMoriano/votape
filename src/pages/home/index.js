@@ -2,8 +2,39 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { CardPresentation, PopUpBottom } from "../../components";
 import { PedroCastillo } from "../../images";
+import { mediaQuery } from "../../styles/constants/mediaQuery";
 
 const candidates = [
+  {
+    name: "panchito pistolas",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
+  {
+    name: "Uresti Coima",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
+  {
+    name: "Porky Esto es esto es todo amigos",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
+  {
+    name: "panchito pistolas",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
+  {
+    name: "Uresti Coima",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
+  {
+    name: "Porky Esto es esto es todo amigos",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
   {
     name: "panchito pistolas",
     candidateImg: PedroCastillo,
@@ -64,6 +95,9 @@ const Container = styled.div`
   .wrapper-candidates {
     display: grid;
     grid-gap: 1em;
-    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    ${mediaQuery.minTablet} {
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    }
   }
 `;
