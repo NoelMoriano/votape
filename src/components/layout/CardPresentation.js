@@ -7,7 +7,7 @@ export const CardPresentation = ({
 }) => {
   return (
     <Container onClick={onClick}>
-      <img src={url} />
+      <img src={url} alt="candidate" />
     </Container>
   );
 };

@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, CardPresentation, PopUpBottom } from "../../components";
+import { CardPresentation, PopUpBottom } from "../../components";
 import { PedroCastillo } from "../../images";
 
 const candidates = [
-  { name: "panchito pistolas", img: PedroCastillo },
-  { name: "Uresti Coima", img: PedroCastillo },
+  {
+    name: "panchito pistolas",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
+  {
+    name: "Uresti Coima",
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
+  },
   {
     name: "Porky Esto es esto es todo amigos",
-    img: PedroCastillo,
+    candidateImg: PedroCastillo,
+    partidoImg: PedroCastillo,
   },
 ];
 
@@ -21,14 +30,14 @@ export const Home = () => {
     setCandidate(_candidate);
   };
 
-  const closePopUp = () => setIsVisiblePopUpBottom(false);
+  const closePopUpBottom = () => setIsVisiblePopUpBottom(false);
 
   return (
     <Container>
       <div className="wrapper-candidates">
         {candidates.map((candidate, index) => (
           <CardPresentation
-            url={candidate.img}
+            url={candidate.candidateImg}
             onClick={() => viewCandidate(candidate)}
           />
         ))}
@@ -36,9 +45,10 @@ export const Home = () => {
       {isVisiblePopUpBottom && (
         <PopUpBottom
           name={candidate.name}
-          candidateImg={candidate.img}
-          partidoImg={candidate.img}
+          candidateImg={candidate.candidateImg}
+          partidoImg={candidate.partidoImg}
           partido={candidate.name}
+          onSetIsVisiblePopUpBottom={closePopUpBottom}
         />
       )}
     </Container>

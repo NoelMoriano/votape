@@ -1,35 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { mediaQuery } from "../../styles/constants/mediaQuery";
-import {
-  faFacebook,
-  faInstagram,
-  faTiktok,
-} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import {mediaQuery} from "../../styles/constants/mediaQuery";
 
 export const Footer = () => {
   return (
     <Container>
       <div className="social-container">
-        <h3>Siguenos en:</h3>
-        <div className="socials-list">
-          <FontAwesomeIcon icon={faFacebook} size="2x" />
-          <FontAwesomeIcon icon={faTiktok} size="2x" />
-          <FontAwesomeIcon icon={faInstagram} size="2x" />
-        </div>
+        {/*<h3>Siguenos en:</h3>*/}
+        {/*<div className="socials-list">*/}
+        {/*  <FontAwesomeIcon icon={faFacebook} size="2x" />*/}
+        {/*  <FontAwesomeIcon icon={faTiktok} size="2x" />*/}
+        {/*  <FontAwesomeIcon icon={faInstagram} size="2x" />*/}
+        {/*</div>*/}
       </div>
       <div className="wrapper-content">
         <div>
-          AnimesGozu - Ningun vídeo se encuentra alojado en nuestros servidores.
+          Vota.pe - Una iniciativa desarrollada por el pueblo para el pueblo.
         </div>
         <div>
           Desarrollado con
           <span className="item-icon">
             <FontAwesomeIcon icon={faHeart} />
           </span>
-          para el mundo
+          para el prueblo.
         </div>
       </div>
     </Container>
@@ -37,10 +32,7 @@ export const Footer = () => {
 };
 
 const Container = styled.div`
-  grid-column: span 2;
-  grid-row: span 3;
   background: #0e0e0e;
-  z-index: 9999;
   color: #fff;
 
   .social-container {
@@ -51,6 +43,7 @@ const Container = styled.div`
     }
     h3 {
       font-size: 2rem;
+      color: ${({ theme }) => theme.colors.light};
     }
     .socials-list {
       display: flex;
@@ -79,7 +72,7 @@ const Container = styled.div`
       font-size: 0.8rem;
       font-weight: 500;
       text-align: center;
-      color: ${({ theme }) => theme.colors.font2};
+      color: ${({ theme }) => theme.colors.light};
       .item-icon {
         margin: 0 0.3rem;
         color: red;
