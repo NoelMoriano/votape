@@ -5,9 +5,9 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const buttonsType = {
   primary: {
-    background: "#d81f26",
+    background: ({ theme }) => theme.colors.quaternary,
     border: "transparent",
-    color: "#fff",
+    color: ({ theme }) => theme.colors.primary,
   },
   secondary: {
     background: "#1f1f1f",
