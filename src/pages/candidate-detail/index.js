@@ -82,7 +82,7 @@ const ArticleInformation = styled.article`
   height: auto;
   padding: 0 1.5em;
   .tab-body {
-    padding: 0.5em;
+    padding: 1em;
     background: #dce8f2;
   }
 `;
