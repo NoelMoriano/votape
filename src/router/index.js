@@ -9,6 +9,7 @@ import {
   Page404,
   Register,
 } from "../pages";
+import { Candidate } from "../pages/admin/candidates/_candidateId";
 
 export const Router = () => (
   <Routes>
@@ -47,6 +48,15 @@ export const Router = () => (
       element={
         <LayoutAdmin>
           <Candidates />
+        </LayoutAdmin>
+      }
+    />
+    <Route
+      exact
+      path="/admin/candidates/:candidateId"
+      element={
+        <LayoutAdmin>
+          <Candidate />
         </LayoutAdmin>
       }
     />

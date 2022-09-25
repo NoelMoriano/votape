@@ -6,3 +6,4 @@ export * from "./home";
 export * from "./candidate-detail";
 export * from "./candidate-ranked";
 export * from "./admin/candidates";
+export * from "./admin/candidates/_candidateId";
