@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { WrapperContainer } from "../ui";
+import { WrapperContainer } from "../../ui";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { DrawerMobile } from "./DrawerMobile";

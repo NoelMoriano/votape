@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "../components";
+import { Layout, LayoutAdmin } from "../components";
 import {
   CandidateDetail,
   CandidateRanked,
+  Candidates,
   Home,
   Login,
   Page404,
@@ -40,6 +41,15 @@ export const Router = () => (
     />
     <Route exact path="/login" element={<Login />} />
     <Route exact path="/register" element={<Register />} />
+    <Route
+      exact
+      path="/admin/candidates"
+      element={
+        <LayoutAdmin>
+          <Candidates />
+        </LayoutAdmin>
+      }
+    />
     <Route
       path="*"
       element={

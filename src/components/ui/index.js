@@ -7,3 +7,4 @@ export * from "./WrapperContainer";
 export * from "./Select";
 export * from "./Spinner";
 export * from "./ComponentContainer";
+export * from "./CardPresentation";

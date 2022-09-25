@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { ImgLogoAnimeGozu } from "../../images";
+import { ImgLogoAnimeGozu } from "../../../images";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { mediaQuery } from "../../styles/constants/mediaQuery";
+import { mediaQuery } from "../../../styles/constants/mediaQuery";
 import { useNavigate } from "react-router";
-import { Avatar } from "../ui";
+import { Avatar } from "../../ui";
 import React from "react";
-import { useAuthentication } from "../../providers";
-import { useDevice } from "../../hooks";
+import { useAuthentication } from "../../../providers";
+import { useDevice } from "../../../hooks";
 
 export const Header = ({ onSetVisibleDrawer }) => {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const Container = styled.div`
   grid-column: span 2;
   display: grid;
   grid-template-columns: 1fr auto;
-  background: ${({ theme }) => theme.colors.tertiary};
+  background: ${({ theme }) => theme.colors.primary};
   border-bottom: 2px solid ${({ theme }) => theme.colors.tertiary};
   box-sizing: border-box;
   z-index: 900;
@@ -106,6 +106,9 @@ const Container = styled.div`
       color: ${({ theme }) => theme.colors.font1};
       .item-icon-open {
         font-size: ${({ theme }) => theme.font_sizes.xxx_large};
+        svg {
+          color: #fff;
+        }
       }
     }
   }

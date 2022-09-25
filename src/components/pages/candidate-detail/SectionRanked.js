@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { mediaQuery } from "../../../styles/constants/mediaQuery";
 
 export const SectionRanked = () => {
   return (
@@ -34,6 +35,10 @@ const Container = styled.div`
     background-color: ${theme.colors.primary};
     display: grid;
     grid-template-columns: 20% 20% 60%;
+    ${mediaQuery.minTablet} {
+      max-width: 25em;
+      margin: 0 auto;
+    }
 
     .item-candidate {
       img {

@@ -5,3 +5,4 @@ export * from "./profile";
 export * from "./home";
 export * from "./candidate-detail";
 export * from "./candidate-ranked";
+export * from "./admin/candidates";
