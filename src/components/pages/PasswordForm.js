@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Form, InputPassword } from "../ui";
+import { Button, Form, InputPassword } from "../layout/public/ui";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";

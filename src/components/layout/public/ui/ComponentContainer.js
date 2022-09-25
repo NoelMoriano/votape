@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { keyframes } from "../../styles/constants/keyframes";
+import { keyframes } from "../../../../styles/constants/keyframes";
 
 export const ComponentContainer = ({
   label,

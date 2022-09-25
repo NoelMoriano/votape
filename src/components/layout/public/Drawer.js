@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../../ui";
+import { Button } from "./ui";
 import { useAuthentication } from "../../../providers";
 import { useNavigate } from "react-router";
 import { UserMenu } from "./UserMenu";

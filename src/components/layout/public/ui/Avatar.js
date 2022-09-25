@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { AvatarDefault } from "../../images";
+import { AvatarDefault } from "../../../../images";
 
 export const Avatar = ({ ImgAvatar, nickName = "User", onClick }) => {
   return (

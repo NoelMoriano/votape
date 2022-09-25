@@ -1,6 +1,6 @@
 import React from "react";
 import { PedroCastillo } from "../../../images";
-import { Button } from "../../ui";
+import { Button } from "../../layout/public/ui";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { mediaQuery } from "../../../styles/constants/mediaQuery";
 import { useNavigate } from "react-router";
-import { Avatar } from "../../ui";
+import { Avatar } from "./ui";
 import React from "react";
 import { useAuthentication } from "../../../providers";
 import { useDevice } from "../../../hooks";
