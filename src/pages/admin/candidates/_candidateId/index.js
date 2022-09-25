@@ -1,11 +1,13 @@
 import React from "react";
 import Row from "antd/lib/row";
 import Col from "antd/lib/col";
-import { Form, Input } from "../../../../components/layout/admin/ui";
+import { Button, Form, Input } from "../../../../components/layout/admin/ui";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useFormUtils } from "../../../../hooks";
+import { ExtraInformation } from "./ExtraInformation";
+import { Divider } from "antd";
 
 export const Candidate = () => {
   const schema = yup.object({
@@ -26,7 +28,7 @@ export const Candidate = () => {
     console.log("formData->", formData);
 
   return (
-    <Row>
+    <Row gutter={[16, 16]}>
       <Col span={24}>
         <Form onSubmit={handleSubmit(onSubmitSaveCandidate)}>
           <Col span={24}>
@@ -48,6 +50,10 @@ export const Candidate = () => {
             />
           </Col>
         </Form>
+      </Col>
+      <Divider />
+      <Col span={24}>
+        <ExtraInformation />
       </Col>
     </Row>
   );
