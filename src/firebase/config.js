@@ -22,7 +22,7 @@ const auth = firebase.auth();
 const common = configs.common;
 const contactData = configs.common.contactData;
 
-const { version, animeServerApi } = currentConfig;
+const { version } = currentConfig;
 
 console.log(currentEnvironment, ":", version);
 
@@ -30,7 +30,6 @@ export {
   currentConfig,
   firebase,
   version,
-  animeServerApi,
   common,
   contactData,
   auth,

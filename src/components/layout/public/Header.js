@@ -58,7 +58,6 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   background: ${({ theme }) => theme.colors.primary};
-  border-bottom: 2px solid ${({ theme }) => theme.colors.tertiary};
   box-sizing: border-box;
   z-index: 900;
   ${mediaQuery.minTablet} {
