@@ -11,7 +11,7 @@ import {
   Proposal,
   Register,
 } from "../pages";
-import { Candidate } from "../pages/admin/candidates/_candidateId";
+import { Candidate } from "../pages";
 
 export const Router = () => (
   <Routes>
