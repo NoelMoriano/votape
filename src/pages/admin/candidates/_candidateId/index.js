@@ -1,20 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 import {
   Button,
   Form,
   Input,
+  notification,
   RadioGroup,
 } from "../../../../components/layout/admin/ui";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useFormUtils } from "../../../../hooks";
 import { ExtraInformation } from "./ExtraInformation";
 import { Divider } from "antd";
+import { firestore } from "../../../../firebase";
 
 export const Candidate = () => {
+  const [savingCandidate, setSavingCandidate] = useState(false);
+
   const schema = yup.object({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
@@ -32,14 +36,47 @@ export const Candidate = () => {
     formState: { errors },
     handleSubmit,
     control,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const { required, error } = useFormUtils({ errors, schema });
 
-  const onSubmitSaveCandidate = (formData) =>
-    console.log("formData->", formData);
+  const onSubmitSaveCandidate = async (formData) => {
+    try {
+      setSavingCandidate(true);
+
+      const candidateId = firestore.collection("candidates").doc().id;
+
+      await firestore
+        .collection("candidates")
+        .doc(candidateId)
+        .set({ ...formData, id: candidateId, createAt: new Date() });
+
+      notification({ type: "success" });
+    } catch (e) {
+      console.log("ErrorSetCandidate: ", e);
+      notification({ type: "error" });
+    } finally {
+      resetForm();
+      setSavingCandidate(false);
+    }
+  };
+
+  const resetForm = () =>
+    reset({
+      firstName: "",
+      lastName: "",
+      chargeRequest: "",
+      placeOfPostulation: "",
+      dni: "",
+      country: "",
+      department: "",
+      province: "",
+      district: "",
+      politicalParty: "",
+    });
 
   return (
     <Row gutter={[16, 16]}>
@@ -248,7 +285,12 @@ export const Candidate = () => {
             />
           </Col>
           <Col span={24}>
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={savingCandidate}
+              disabled={savingCandidate}
+            >
               Guardar
             </Button>
           </Col>
