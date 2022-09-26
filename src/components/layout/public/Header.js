@@ -22,7 +22,7 @@ export const Header = ({ onSetVisibleDrawer }) => {
         <img
           src={ImgLogoAnimeGozu}
           alt="Animes Gozu"
-          onClick={() => onNavigateTo("/")}
+          onClick={() => onNavigateTo("/admin/candidates")}
         />
       </div>
       <div className="content-right">
