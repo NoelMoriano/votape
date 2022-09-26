@@ -25,6 +25,7 @@ export const Candidate = () => {
     department: yup.string().required(),
     province: yup.string().required(),
     district: yup.string().required(),
+    politicalParty: yup.string().required(),
   });
 
   const {
@@ -70,6 +71,24 @@ export const Candidate = () => {
               render={({ field: { onChange, value, name } }) => (
                 <Input
                   label="Ingrese Apellidos"
+                  size="large"
+                  name={name}
+                  value={value}
+                  onChange={onChange}
+                  error={error(name)}
+                  required={required(name)}
+                />
+              )}
+            />
+          </Col>
+          <Col span={24}>
+            <Controller
+              name="politicalParty"
+              control={control}
+              defaultValue=""
+              render={({ field: { onChange, value, name } }) => (
+                <Input
+                  label="PartidoPolitico "
                   size="large"
                   name={name}
                   value={value}
