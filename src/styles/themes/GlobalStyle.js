@@ -70,6 +70,9 @@ const global = css`
     cursor: pointer;
     text-decoration: none;
   }
+  .ant-tabs {
+    width: 100%;
+  }
 `;
 
 export const GlobalStyle = createGlobalStyle`

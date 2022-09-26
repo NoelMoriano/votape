@@ -7,3 +7,7 @@ export * from "./candidate-detail";
 export * from "./candidate-ranked";
 export * from "./admin/candidates";
 export * from "./admin/candidates/_candidateId";
+export * from "./admin/candidates/_candidateId/proposals";
+export * from "./admin/candidates/_candidateId/proposals/_proposalId";
+export * from "./admin/candidates/_candidateId/educations";
+export * from "./admin/candidates/_candidateId/educations/_educationId";

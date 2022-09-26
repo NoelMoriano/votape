@@ -4,9 +4,11 @@ import {
   CandidateDetail,
   CandidateRanked,
   Candidates,
+  Education,
   Home,
   Login,
   Page404,
+  Proposal,
   Register,
 } from "../pages";
 import { Candidate } from "../pages/admin/candidates/_candidateId";
@@ -57,6 +59,24 @@ export const Router = () => (
       element={
         <LayoutAdmin>
           <Candidate />
+        </LayoutAdmin>
+      }
+    />
+    <Route
+      exact
+      path="/admin/candidates/:candidateId/proposals/:proposalId"
+      element={
+        <LayoutAdmin>
+          <Proposal />
+        </LayoutAdmin>
+      }
+    />
+    <Route
+      exact
+      path="/admin/candidates/:candidateId/educations/:educationId"
+      element={
+        <LayoutAdmin>
+          <Education />
         </LayoutAdmin>
       }
     />
