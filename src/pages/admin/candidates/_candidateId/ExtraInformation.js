@@ -7,7 +7,7 @@ import { Proposals } from "./proposals";
 import { useNavigate } from "react-router";
 import { Educations } from "./educations";
 
-export const ExtraInformation = () => {
+export const ExtraInformation = ({ candidateId }) => {
   const navigate = useNavigate();
 
   const onNavigateTo = (url) => navigate(url);
@@ -18,7 +18,9 @@ export const ExtraInformation = () => {
           <Title level={3}>Propuestas</Title>
           <Button
             type="primary"
-            onClick={() => onNavigateTo("/admin/candidates/new/proposals/new")}
+            onClick={() =>
+              onNavigateTo(`/admin/candidates/${candidateId}/proposals/new`)
+            }
           >
             Agregar propuesta
           </Button>
@@ -28,7 +30,9 @@ export const ExtraInformation = () => {
           <Title level={3}>Eduacion</Title>
           <Button
             type="primary"
-            onClick={() => onNavigateTo("/admin/candidates/new/educations/new")}
+            onClick={() =>
+              onNavigateTo(`/admin/candidates/${candidateId}/educations/new`)
+            }
           >
             Agregar educacion
           </Button>

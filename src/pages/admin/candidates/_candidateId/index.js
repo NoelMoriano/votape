@@ -343,9 +343,11 @@ export const Candidate = () => {
         </Form>
       </Col>
       <Divider />
-      <Col span={24}>
-        <ExtraInformation />
-      </Col>
+      {candidateId !== "new" && (
+        <Col span={24}>
+          <ExtraInformation candidateId={candidateId} />
+        </Col>
+      )}
     </Row>
   );
 };
