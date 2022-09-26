@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Row from "antd/lib/row";
 import Col from "antd/lib/col";
 import {
@@ -7,6 +7,7 @@ import {
   Input,
   notification,
   RadioGroup,
+  Spinner,
 } from "../../../../components/layout/admin/ui";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,9 +16,44 @@ import { useFormUtils } from "../../../../hooks";
 import { ExtraInformation } from "./ExtraInformation";
 import { Divider } from "antd";
 import { firestore } from "../../../../firebase";
+import { useNavigate, useParams } from "react-router";
 
 export const Candidate = () => {
+  const { candidateId } = useParams();
+  const navigate = useNavigate();
+  const [candidate, setCandidate] = useState(null);
+  const [loadingCandidate, setLoadingCandidate] = useState(null);
   const [savingCandidate, setSavingCandidate] = useState(false);
+
+  useEffect(() => {
+    fetchCandidate();
+  }, []);
+
+  const onNavigateTo = (url) => navigate(url);
+  const onGoBack = () => navigate(-1);
+
+  const fetchCandidate = async () => {
+    try {
+      if (candidateId === "new") {
+        const candidateId_ = firestore.collection("candidates").doc().id;
+
+        return setCandidate({ id: candidateId_ });
+      }
+
+      const queryCandidates = await firestore
+        .collection("candidates")
+        .doc(candidateId)
+        .get();
+
+      const candidates_ = queryCandidates.data();
+
+      setCandidate(candidates_);
+    } catch (e) {
+      console.log("ErrorGetCandidates->", e);
+    } finally {
+      setLoadingCandidate(false);
+    }
+  };
 
   const schema = yup.object({
     firstName: yup.string().required(),
@@ -47,14 +83,17 @@ export const Candidate = () => {
     try {
       setSavingCandidate(true);
 
-      const candidateId = firestore.collection("candidates").doc().id;
-
       await firestore
         .collection("candidates")
-        .doc(candidateId)
-        .set({ ...formData, id: candidateId, createAt: new Date() });
+        .doc(candidate.id)
+        .set(
+          { ...formData, id: candidate.id, createAt: new Date() },
+          { merge: true }
+        );
 
       notification({ type: "success" });
+
+      onGoBack();
     } catch (e) {
       console.log("ErrorSetCandidate: ", e);
       notification({ type: "error" });
@@ -64,19 +103,26 @@ export const Candidate = () => {
     }
   };
 
-  const resetForm = () =>
+  useEffect(() => {
+    resetForm();
+  }, [candidate]);
+
+  const resetForm = () => {
     reset({
-      firstName: "",
-      lastName: "",
-      chargeRequest: "",
-      placeOfPostulation: "",
-      dni: "",
-      country: "",
-      department: "",
-      province: "",
-      district: "",
-      politicalParty: "",
+      firstName: candidate?.firstName || "",
+      lastName: candidate?.lastName || "",
+      chargeRequest: candidate?.chargeRequest || "",
+      placeOfPostulation: candidate?.placeOfPostulation || "",
+      dni: candidate?.dni || "",
+      country: candidate?.country || "",
+      department: candidate?.department || "",
+      province: candidate?.province || "",
+      district: candidate?.district || "",
+      politicalParty: candidate?.politicalParty || "",
     });
+  };
+
+  if (loadingCandidate) return <Spinner fullscreen />;
 
   return (
     <Row gutter={[16, 16]}>
@@ -291,7 +337,7 @@ export const Candidate = () => {
               loading={savingCandidate}
               disabled={savingCandidate}
             >
-              Guardar
+              {candidateId === "new" ? "Guardar" : "Actualizar"}
             </Button>
           </Col>
         </Form>
