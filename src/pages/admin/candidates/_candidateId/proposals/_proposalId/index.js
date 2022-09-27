@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -8,12 +8,20 @@ import {
   Button,
   Form,
   Input,
+  notification,
   TextArea,
 } from "../../../../../../components/layout/admin/ui";
 import { Divider } from "antd";
 import Row from "antd/lib/row";
+import { useNavigate, useParams } from "react-router";
+import { firestore } from "../../../../../../firebase";
+import { assign } from "lodash";
 
 export const Proposal = () => {
+  const { candidateId } = useParams();
+  const navigate = useNavigate();
+  const [savingProposal, setSavingProposal] = useState(false);
+
   const schema = yup.object({
     title: yup.string().required(),
     description: yup.string().required(),
@@ -29,8 +37,33 @@ export const Proposal = () => {
 
   const { required, error } = useFormUtils({ errors, schema });
 
-  const onSubmitSaveCandidate = (formData) =>
-    console.log("formData->", formData);
+  const onGoBack = () => navigate(-1);
+
+  const mapProposal = (formData, proposalId) =>
+    assign({}, formData, { candidateId, id: proposalId, createAt: new Date() });
+
+  const onSubmitSaveCandidate = async (formData) => {
+    try {
+      setSavingProposal(true);
+      const proposalId = firestore.collection("proposals").doc().id;
+
+      const proposal_ = mapProposal(formData, proposalId);
+
+      await firestore
+        .collection("proposals")
+        .doc(proposalId)
+        .set(proposal_, { merge: true });
+
+      notification({ type: "success" });
+
+      onGoBack();
+    } catch (e) {
+      console.error(e);
+      notification({ type: "error" });
+    } finally {
+      setSavingProposal(false);
+    }
+  };
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
@@ -72,7 +105,12 @@ export const Proposal = () => {
             />
           </Col>
           <Col span={24}>
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={savingProposal}
+              disabled={savingProposal}
+            >
               Guardar
             </Button>
           </Col>
