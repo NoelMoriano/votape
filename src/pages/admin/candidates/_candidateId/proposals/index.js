@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import Avatar from "antd/lib/avatar/avatar";
 import { useNavigate, useParams } from "react-router";
 import { firestore, querySnapshotToArray } from "../../../../../firebase";
+import {
+  modalConfirm,
+  notification,
+} from "../../../../../components/layout/admin/ui";
 
 export const Proposals = () => {
   const navigate = useNavigate();
@@ -17,17 +21,27 @@ export const Proposals = () => {
   }, []);
 
   const fetchProposals = async () => {
-    const queryProposals = await firestore
+    await firestore
       .collection("proposals")
       .where("candidateId", "==", candidateId)
-      .get();
+      .onSnapshot((snapshot) => {
+        const proposals_ = querySnapshotToArray(snapshot);
 
-    const proposals_ = querySnapshotToArray(queryProposals);
-
-    console.log("proposal", proposals_);
-
-    setProposals(proposals_);
+        setProposals(proposals_);
+      });
   };
+
+  const removeProposal = async (proposalId) => {
+    try {
+      await firestore.collection("proposals").doc(proposalId).delete();
+      notification({ type: "success" });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const onRemoveProposalConfirm = (proposalId) =>
+    modalConfirm({ onOk: () => removeProposal(proposalId) });
 
   const onNavigateTo = (url) => navigate(url);
   return (
@@ -47,7 +61,9 @@ export const Proposals = () => {
                 >
                   Edit
                 </Link>,
-                <Link to="/admin/candidates/new">Delete</Link>,
+                <a onClick={() => onRemoveProposalConfirm(proposal.id)}>
+                  Delete
+                </a>,
               ]}
             >
               <Skeleton avatar title={false} loading={false} active>
