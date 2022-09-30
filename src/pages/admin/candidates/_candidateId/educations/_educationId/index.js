@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,12 +11,17 @@ import {
   DatePicker,
   Form,
   Input,
-  TextArea,
+  notification,
 } from "../../../../../../components/layout/admin/ui";
 import { Divider } from "antd";
-import React from "react";
+import { assign } from "lodash";
+import { firestore } from "../../../../../../firebase";
 
 export const Education = () => {
+  const { candidateId } = useParams();
+  const navigate = useNavigate();
+  const [savingEducation, setSavingEducation] = useState(false);
+
   const schema = yup.object({
     title: yup.string().required(),
     initialYear: yup.mixed().required(),
@@ -31,8 +38,40 @@ export const Education = () => {
 
   const { required, error } = useFormUtils({ errors, schema });
 
-  const onSubmitSaveCandidate = (formData) =>
-    console.log("formData->", formData);
+  const mapEducation = (formData, educationId) =>
+    assign({}, formData, {
+      candidateId,
+      initialYear: new Date(formData.initialYear),
+      finishYear: new Date(formData.finishYear),
+      id: educationId,
+      createAt: new Date(),
+    });
+
+  const onGoBack = () => navigate(-1);
+
+  const onSubmitSaveCandidate = async (formData) => {
+    try {
+      setSavingEducation(true);
+      const educationId = firestore.collection("educations").doc().id;
+
+      const education_ = mapEducation(formData, educationId);
+
+      await firestore
+        .collection("educations")
+        .doc(educationId)
+        .set(education_, { merge: true });
+
+      notification({ type: "success" });
+
+      onGoBack();
+    } catch (e) {
+      console.error(e);
+      notification({ type: "error" });
+    } finally {
+      setSavingEducation(false);
+    }
+  };
+
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
@@ -95,7 +134,12 @@ export const Education = () => {
               />
             </Col>
             <Col span={24}>
-              <Button type="primary" htmlType="submit">
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={savingEducation}
+                loading={savingEducation}
+              >
                 Guardar
               </Button>
             </Col>
